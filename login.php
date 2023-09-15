@@ -176,7 +176,13 @@ function check_login() {
     //     setcookie($cookie_name, $cookie_value, time() + (86400 * 14), "/"); // 86400 = 1 day | 3600 = 1 hour
     // }
 
-    header('Location: index.php');
+    ?>
+    <script type="text/javascript">
+    <!--
+    window.top.location.href = "index.php";
+    -->
+    </script>
+    <?php
 }
 
 //*******************************************************
@@ -190,10 +196,22 @@ switch($action) {
         check_login();
     break;
     case "Register":
-        header('Location: register.php');
+        ?>
+        <script type="text/javascript">
+        <!--
+        window.top.location.href = "register.php";
+        -->
+        </script>
+        <?php
     break;
     case "Forgot":
-        header('Location: lostpwd.php');
+        ?>
+        <script type="text/javascript">
+        <!--
+        window.top.location.href = "lostpwd.php";
+        -->
+        </script>
+        <?php
     break;
 	default:
 		main_form();

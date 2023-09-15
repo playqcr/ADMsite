@@ -9,9 +9,9 @@ global $dbhost, $dbusername, $dbpassword, $dbname, $mysqli;
 
 // LOCALHOST
 $dbhost = 'localhost';
-$dbusername = 'school2';
-$dbpassword = '1nh15nam3';
-$dbname = 'school2';
+$dbusername = 'admsite';
+$dbpassword = 'Adm51t3Kewl';
+$dbname = 'admsite';
 
 $users_tablename = 'users';
 $answers_tablename = 'answers';

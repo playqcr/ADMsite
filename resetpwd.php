@@ -1,18 +1,11 @@
 <?php
-
 /****************************************************
- ****   QCR Intranet Project                       ***
- ****   Designed by: Tom Moore                     ***
- ****   Written by: Tom Moore                      ***
- ****   (c) 2008 TEEMOR eBusiness Solutions        ***
- ****************************************************/
-require "includes/globals.php";
-session_start();
-db_connect();
-
-if ($mysqli->connect_error) {
-    echo 'Failed to connect to server: (' . $mysqli->connect_error . ') ' . $mysqli->connect_error;
-}
+****   Advanced Data Manager
+****   Designed by: Tom Moore
+****   Written by: Tom Moore
+****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
+****************************************************/
+include "tmp/header.php";
 
 // Grab action
 if (isset($_POST['action'])) {
@@ -27,10 +20,9 @@ if (isset($_POST['action'])) {
 function main_form()
 {
     global $PHP_SELF, $mysqli, $msg;
-    global $employees_tablename, $userid, $fname, $lname, $empid, $email, $department, $phone, $extension, $fax, $did, $access, $username, $password, $License, $position, $YosAccess, $YosSys, $SecureAccess, $SecureSys, $compname, $CallTraxSys, $dept_market, $dept_safety, $dept_tg, $dept_tga, $dept_training, $dept_evs, $dept_facility, $dept_tgo, $imgpath, $resetpwd, $isactive, $isadmin;
+    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
 
-    include 'templates/include.php';
-    include 'templates/styles.tpl';
+    // include 'templates/include.php';
 
     $uid = $_GET["uid"];
 
@@ -70,7 +62,7 @@ function main_form()
         </div>
         </div>
 
-        <?php include "templates/footer.tpl"; ?>
+        <?php include "tmp/footer.php"; ?>
     </body>
 
     </html>
@@ -83,7 +75,7 @@ function main_form()
 function update_form()
 {
     global $PHP_SELF, $mysqli, $msg;
-    global $employees_tablename, $userid, $fname, $lname, $empid, $email, $department, $phone, $extension, $fax, $did, $access, $username, $password, $License, $position, $YosAccess, $YosSys, $SecureAccess, $SecureSys, $compname, $CallTraxSys, $dept_market, $dept_safety, $dept_tg, $dept_tga, $dept_training, $dept_evs, $dept_facility, $dept_tgo, $imgpath, $resetpwd, $isactive, $isadmin;
+    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
 
     $uid = $_GET["uid"];
     $password1 = filter_var($_POST['password1'], FILTER_SANITIZE_STRING);
@@ -117,7 +109,7 @@ function update_form()
     }
 
     // Attempt select query execution
-    $sql = "UPDATE $employees_tablename SET password = '$password', resetpwd = '0' WHERE userid = '$uid'";
+    $sql = "UPDATE $users_tablename SET userpassword = '$password', resetpwd = '0' WHERE userid = '$uid'";
     if ($mysqli->query($sql) === TRUE) {
         $msg = "<div class='alert alert-success' role='alert'>
         <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
@@ -132,7 +124,14 @@ function update_form()
     }
     // End attempt select query execution
 
-    header('Location: index.php');
+    // header('Location: index.php');
+    ?>
+    <script type="text/javascript">
+    <!--
+    window.top.location.href = "index.php";
+    -->
+    </script>
+    <?php
 }
 
 

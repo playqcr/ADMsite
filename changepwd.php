@@ -1,34 +1,29 @@
 <?php
-
 /****************************************************
- ****   QCR Intranet Project                       ***
- ****   Designed by: Tom Moore                     ***
- ****   Written by: Tom Moore                      ***
- ****   (c) 2008 TEEMOR eBusiness Solutions        ***
- ****************************************************/
+****   Advanced Data Manager
+****   Designed by: Tom Moore
+****   Written by: Tom Moore
+****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
+****************************************************/
 require('email_functions.php');
 require('smtp.php');
-require "includes/globals.php";
-session_start();
-db_connect();
-
-if ($mysqli->connect_error) {
-    echo 'Failed to connect to server: (' . $mysqli->connect_error . ') ' . $mysqli->connect_error;
-}
+include "tmp/header.php";
 
 $uid = $_GET["uid"];
+// echo "uid: ".$uid."<br>";
+// exit;
 
 global $PHP_SELF, $mysqli, $msg;
-global $employees_tablename, $userid, $fname, $lname, $empid, $email, $department, $phone, $extension, $fax, $did, $access, $username, $password, $License, $position, $YosAccess, $YosSys, $SecureAccess, $SecureSys, $compname, $CallTraxSys, $dept_market, $dept_safety, $dept_tg, $dept_tga, $dept_training, $dept_evs, $dept_facility, $dept_tgo, $imgpath, $resetpwd, $isactive, $isadmin;
+global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
 
 //***************************************************************
 // Attempt select query execution
-$sql = "SELECT * FROM $employees_tablename WHERE userid = '$uid'";
+$sql = "SELECT * FROM $users_tablename WHERE userid = '$uid'";
 if ($result = mysqli_query($mysqli, $sql)) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_array($result);
         $uid = $row['userid'];
-        $email = $row['email'];
+        $email = $row['useremail'];
         // Free result set
         mysqli_free_result($result);
     } else {
@@ -45,7 +40,7 @@ if ($result = mysqli_query($mysqli, $sql)) {
 }
 // End attempt select query execution
 
-$url = "http://qcr-net/depts/support/resetpwd.php?uid=" . $uid;
+$url = "http://localhost/__REPOSITORIES/admsite/resetpwd.php?uid=" . $uid;
 $subject = "Password Reset Request";
 $message = "Someone has requested your password be changed.
 
@@ -64,18 +59,14 @@ hesk_mail($email, $subject, $message);
 //$msg = "<br>Mail supposedly sent.";
 ?>
 <html>
-
 <head>
-
 </head>
-
 <body>
     <center>
         <h1>An email has been sent to you.</h1>
         <p>An email has been sent to you. Please click the link in the email and follow the directions.</p>
     </center>
 </body>
-
 </html>
 <?php
 //***************************************************************

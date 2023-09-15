@@ -50,7 +50,7 @@
 
         <footer class="footer">
             <div class="text-center" style="color: #ffffff;">
-                Copyright &copy; <?php echo date('Y'); ?> <a href="https://ihnbible.org" target="_blank">IHN Bible Inc</a>. All rights reserved.
+                Copyright &copy; <?php echo date('Y'); ?> <a href="https://teemor.com" target="_blank">TEEMOR eBusiness Solutions</a>. All rights reserved.
             </div>
             <!-- </div> -->
         </footer>

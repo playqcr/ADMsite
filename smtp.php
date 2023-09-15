@@ -1,9 +1,9 @@
 <?php
 /****************************************************
-****   QCR Intranet Project                       ***
-****   Designed by: Tom Moore                     ***
-****   Written by: Tom Moore                      ***
-****   (c) 2008 TEEMOR eBusiness Solutions        ***
+****   Advanced Data Manager
+****   Designed by: Tom Moore
+****   Written by: Tom Moore
+****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
 ****************************************************/
 class smtp_class
 {
