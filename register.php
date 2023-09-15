@@ -5,13 +5,7 @@
 ****   Written by: Tom Moore
 ****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
 ****************************************************/
-include 'includes/globals.php';
-session_start();
-db_connect();
-
-if($mysqli->connect_error) {
-    echo "Failed to connect to server: (".$mysqli->connect_error.") ".$mysqli->connect_error;
-}
+include "tmp/header.php";
 
 // Grab action
 if (isset($_POST['action'])) {
@@ -25,11 +19,12 @@ if (isset($_POST['action'])) {
 
 function main_form() {
     global $PHP_SELF, $mysqli, $msg, $nextpage, $prevpage, $perpage, $cookie_name;
-    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages;
+    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
     global $system_tablename;
 
-    include "templates/include.tpl";
-    include "templates/style.tpl";
+    information_modal();
+    $menuid = 5;
+    testadmin();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <style>
@@ -68,7 +63,7 @@ function main_form() {
 							<button type="submit" name="action" class="btn btn-success btn-block" value="Submit"><font size="+2">Submit</font></button>
 							<br>
 						</center>
-                        <br /><br /><a href="login.php"><font size="+2">Return To Login</font></a><br /><br />
+                        <p><br /><br /><a href="login.php" stylr="position: absolute; margin-top: 10px;"><font size="+2">Return To Login</font></a><br /><br /></p>
 					</form>
 
                 </div>
@@ -78,7 +73,7 @@ function main_form() {
     </div>
 </section>
 <?php
-include "templates/footer.tpl";
+include "tmp/footer.php";
 
 ?>
 
@@ -99,18 +94,26 @@ if ( window.history.replaceState ) {
 //*******************************************************
 function add_item(){
     global $PHP_SELF, $mysqli, $msg, $nextpage, $prevpage, $perpage, $cookie_name;
-    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages;
+    global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
     global $system_tablename;
+    
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $fname = filter_var($_POST['fname'], FILTER_SANITIZE_EMAIL);
+    $mname = filter_var($_POST['mname'], FILTER_SANITIZE_EMAIL);
+    $lname = filter_var($_POST['lname'], FILTER_SANITIZE_EMAIL);
+    $pwd1 = filter_var($_POST['pwd1'], FILTER_SANITIZE_STRING);
+    $pwd2 = filter_var($_POST['pwd2'], FILTER_SANITIZE_STRING);
+    // $remember = $_POST['remember'];
+    $hash = hash('sha512', $pwd1);
 
-	$email = addslashes($_POST['email']);
-	$fname = addslashes($_POST['fname']);
-	$mname = addslashes($_POST['mname']);
-	$lname = addslashes($_POST['lname']);
-	$pwd1 = addslashes($_POST['pwd1']);
-	$pwd2 = addslashes($_POST['pwd2']);
-
-    $hash = md5($pwd1);
-    $userpassword = $hash;
+	if($pwd1 != $pwd2) {
+        $msg = "<br><div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Passwords do not match!<br>
+        </div>";
+		main_form();
+		exit;
+	}
 
 	$_SESSION['fname'] = $fname;
 	$_SESSION['lname'] = $lname;
@@ -159,8 +162,10 @@ function add_item(){
 		exit;
 	}
 
+    global $users_tablename, $userid, $useremail, $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
+
     // Attempt select query execution
-    $sql = "INSERT INTO $users_tablename (userid, useremail, userpassword, isadmin, userfname, usermname, userlname, useraddress, usercity, userstate, userzip, usercountry, userphone, suspended, highgrade, dob, usersaved, baptized, baptismdate, profile, imagepath, corecompletedate, branchid, role, messages) VALUES(NULL, '$email', '$hash', '0', '$fname', '$mname', '$lname', '', '', '', '', '', '', '0', '', '', '0', '0', '', '', '', '', '', '', '1')";
+    $sql = "INSERT INTO $users_tablename (userid, useremail, userpassword, isadmin, userfname, usermname, userlname, useraddress, usercity, userstate, userzip, usercountry, userphone, suspended, highgrade, dob, usersaved, baptized, baptismdate, profile, imagepath, corecompletedate, branchid, role, messages, core_complete, resetpwd) VALUES(NULL, '$email', '$hash', '0', '$fname', '$mname', '$lname', '', '', '', '', '', '', '0', '', '', '0', '0', '', '', '', '', '', '', '1', '0', '0')";
     if($result = mysqli_query($mysqli, $sql)){
         // TODO
     } else{

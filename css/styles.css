@@ -43,6 +43,18 @@ a:hover {
     max-height: 300px;
 }
 
+.info-cards{
+    min-height: 350px;
+    height: 350px;
+    max-height: 350px;
+}
+
+.list-cards{
+    min-height: 300px;
+    height: 300px;
+    max-height: 300px;
+}
+
 .center-cards{
     align-items: center;
 }
@@ -74,7 +86,7 @@ a:hover {
 }
 
 .menu_icons{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-right: 20px;
     font-size: 24px;
 }
@@ -247,6 +259,7 @@ a:hover {
 .nav_logo-name {
     color: var(--white-color);
     font-weight: 700;
+    font-size: 12px;
 }
 
 .nav_link {

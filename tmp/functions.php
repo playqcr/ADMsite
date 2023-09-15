@@ -78,7 +78,7 @@ function menu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         <a class="nav_link active" onClick="Javascript:window.location.href = 'index.php';">
@@ -111,7 +111,7 @@ function menu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -130,7 +130,7 @@ function menu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
 
@@ -164,7 +164,7 @@ function menu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -184,7 +184,7 @@ function menu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         <a class="nav_link" onClick="Javascript:window.location.href = 'index.php';">
@@ -213,7 +213,7 @@ function menu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -232,7 +232,7 @@ function menu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         <a class="nav_link" onClick="Javascript:window.location.href = 'index.php';">
@@ -261,7 +261,7 @@ function menu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -280,7 +280,7 @@ function menu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         <a href="index.php" class="nav_link" onClick="Javascript:window.location.href = 'index.php';">
@@ -309,7 +309,7 @@ function menu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -332,7 +332,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -370,7 +370,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -390,7 +390,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -428,7 +428,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -448,7 +448,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -486,7 +486,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -506,7 +506,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -544,7 +544,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -564,7 +564,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -602,7 +602,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }
@@ -622,7 +622,7 @@ function adminmenu(){
             <nav class="nav">
                 <div>
                     <a class="nav_logo" onClick="Javascript:window.location.href = 'index.php';">
-                        <span class="nav_logo-name">IHN Bible College</span>
+                        <span class="nav_logo-name">ADM Advanced Data Manager</span>
                     </a>
                     <div class="nav_list">
                         
@@ -660,7 +660,7 @@ function adminmenu(){
                         }else{
                             ?>
                             <a class="nav_link" onClick="Javascript:window.location.href = 'login.php';">
-                                <i class='bx bx-log-in nav_icon' title="Student Login"></i><span class="nav_name">&nbsp;&nbsp;Student Login</span>
+                                <i class='bx bx-log-in nav_icon' title="Login"></i><span class="nav_name">&nbsp;&nbsp;Login</span>
                             </a>
                             <?php
                         }

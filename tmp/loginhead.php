@@ -13,7 +13,7 @@
         <body>
             <header class="header" id="header">
                 <div class="">
-                    <a href="index.php"><img src="img/ihnbible_logo_222x37jpg.jpg" alt="IHN Bible College" /></a>
+                    <a href="index.php">ADM Advanced Data Manager</a>
                 </div>
                 <div class="header_img">
                     &nbsp;

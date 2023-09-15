@@ -72,7 +72,7 @@ function check_login() {
 
     $useremail1 = filter_var($_POST['useremail'], FILTER_SANITIZE_EMAIL);
     $userpassword1 = filter_var($_POST['userpassword'], FILTER_SANITIZE_STRING);
-    $remember = $_POST['remember'];
+    // $remember = $_POST['remember'];
     $pwd = hash('sha512', $userpassword1);
 
     // echo "useremail1: ".$useremail1."<br>";
@@ -172,11 +172,11 @@ function check_login() {
     $_SESSION['role'] = $role;
 
     // SET COOKIE IF REMEMBER ME IS CHECKED
-    if($remember){
-        $cookie_name = "ihnuid";
-        $cookie_value = $userid;
-        setcookie($cookie_name, $cookie_value, time() + (86400 * 14), "/"); // 86400 = 1 day | 3600 = 1 hour
-    }
+    // if($remember){
+    //     $cookie_name = "ihnuid";
+    //     $cookie_value = $userid;
+    //     setcookie($cookie_name, $cookie_value, time() + (86400 * 14), "/"); // 86400 = 1 day | 3600 = 1 hour
+    // }
 
     header('Location: index.php');
 }

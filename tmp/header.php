@@ -50,33 +50,8 @@ global $menuid, $goal, $current, $pct, $userid;
         }
         // End attempt select query execution
 
-
-        // // Attempt select query execution
-        // // $sql = "SELECT * FROM $users_tablename WHERE userid = '$userid'";
-        // echo "Line #24 Header<br>";
-        // if ($result = $mysqli->query("SELECT * FROM $users_tablename WHERE userid = '$userid'")) {
-        //     echo "Line #26 Header<br>";
-        //     if(mysqli_num_rows($result) > 0){
-        //         echo "Line #28 Header<br>";
-        //         $row = mysqli_fetch_array($result);
-        //         $isadmin = $row['isadmin'];
-        //         $userfname = $row['userfname'];
-        //         $userlname = $row['userlname'];
-        //         $imagepath = $row['imagepath'];
-        //         $fullname = $userfname." ".$userlname;
-        //         // Free result set
-        //         mysqli_free_result($result);
-        //     } else{
-        //         echo "Line #37 Header<br>";
-        //         $msg = "<font color='#FF0000'><strong>Account not found!</strong></font>";
-        //         main_form();
-        //         exit;
-        //     }
-        // } else{
-        //     echo "Line #43 Header<br>";
-        //     echo "ERROR: Was not able to execute Query on line #152. " . mysqli_error($mysqli);
-        // }
-        // // End attempt select query execution
+        // echo "imagepath: ".$imagepath."<br>";
+        // exit;
     }else{
         $imagepath = "NoPhoto.jpg";
         $fullname = 'Visitor';
@@ -96,11 +71,92 @@ global $menuid, $goal, $current, $pct, $userid;
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
         <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
 
         <!-- **********************  TintMCE  ****************************************************************** -->
         <script src="https://cdn.tiny.cloud/1/qa5ollct4qx4a9lkzbhdh1ki6763pwyi6jx3m0s5ut86u8by/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <!-- **********************  END TintMCE  ******************************************************************-->
+
+        <!-- **********************  JQUERY  ********************************************************************** -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <!-- **********************  END JQUERY  ******************************************************************-->
+
+        <!-- ********************************************************************************************************
+        *******  DATE PICKER / CALENDAR
+        ***********************************************************************************************************-->
+        <script>
+            $( function() {
+                $( "#datepicker" ).datepicker();
+            } );
+        </script>
+
+        <!-- ********************************************************************************************************
+        *******  ACCORDIAN
+        ***********************************************************************************************************-->
+        <script>
+            $(function(){
+                var icons = {
+                    header: "ui-icon-circle-arrow-e",
+                    activeHeader: "ui-icon-circle-arrow-s"
+                };
+
+                $("#accordion").accordion({
+                    icons: icons
+                });
+
+                $("#toggle").button().on( "click", function(){
+                    if ($("#accordion").accordion("option", "icons")){
+                        $("#accordion").accordion("option", "icons", null);
+                    }else{
+                        $("#accordion").accordion("option", "icons", icons);
+                    }
+                });
+            });
+        </script>
+
+        <!-- ********************************************************************************************************
+        *******  MODAL
+        ***********************************************************************************************************--> 
+        <script>
+            $(function(){
+                $("#dialog").dialog({
+                    autoOpen: false,
+                    show:{
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide:{
+                        effect: "explode",
+                        duration: 1000
+                    }
+                });
+            
+                $("#opener").on("click", function(){
+                    $("#dialog").dialog("open");
+                });
+
+                $(".selector").dialog({
+                    width: 800
+                });
+
+                $(".selector").dialog({
+                    buttons: [{
+                        text: "Ok",
+                        icon: "ui-icon-heart",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    
+                        // Uncommenting the following line would hide the text,
+                        // resulting in the label being used as a tooltip
+                        //showText: false
+                    }]
+                });
+            });
+        </script>
+
+        <link href="css/styles.css" rel="stylesheet" />
         
         <style>
             .modal {
@@ -171,30 +227,29 @@ global $menuid, $goal, $current, $pct, $userid;
                             <?php
                         }
                         ?>
-                        <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <?php echo $mailcnt; ?>
-                            <span class="visually-hidden">unread Mail</span>
-                        </span> -->
                         </a>
                     </div>
-                    <!-- <div class="menu_icons">
-                        <a onClick="Javascript:window.location.href = 'notifications.php';"><i class='bx bx-bell'></i><span style="font-size: 18px;"> Notifications</span></a>
-                    </div>
-                    <div class="menu_icons">
-                        <a onClick="Javascript:window.location.href = 'studentmail.php';"><i class='bx bx-envelope'></i><span style="font-size: 18px;"> Mail</span></a>
-                    </div> -->
                     <?php
                 }else{
                     ?>
                     <div class="menu_icons">
-                        <a onClick="Javascript:window.location.href = 'admissions.php';"><i class='bx bxs-school nav_icon'></i><span style="font-size: 18px;"> Enroll Now</span></a>
+                        <a onClick="Javascript:window.location.href = 'admissions.php';"><i class='bx bxs-school nav_icon'></i><span style="font-size: 18px;"> Signup Now</span></a>
                     </div>
                     <div class="menu_icons">
-                        <a onClick="Javascript:window.location.href = 'login.php';"><i class='bx bx-log-in nav_icon'></i><span style="font-size: 18px;"> Student Login</span></a>
+                        <a onClick="Javascript:window.location.href = 'login.php';"><i class='bx bx-log-in nav_icon'></i><span style="font-size: 18px;"> Login</span></a>
                     </div>
                     <?php
                 }
+
+                if(empty($imagepath)){
+                    ?>
+                    <img class="header_img" style="margin-top: 2px;" src="img/portraits/NoPhoto.jpg" alt="" /> <div style="margin-top: 13px; margin-left: 10px;"><?php echo $fullname; ?></div>
+                    <?php
+                }else{
+                    ?>
+                    <img class="header_img" style="margin-top: 2px;" src="img/portraits/<?php echo $imagepath; ?>" alt="" /> <div style="margin-top: 13px; margin-left: 10px;"><?php echo $fullname; ?></div>
+                    <?php
+                }
                 ?>
-                <img class="header_img" src="img/portraits/<?php echo $imagepath; ?>" alt="" /> <div style="margin-top: 10px; margin-left: 10px;"><?php echo $fullname; ?></div>
             </div>
         </header>

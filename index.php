@@ -77,14 +77,14 @@ function main_form() {
                         <?php
                     }
                     ?>
-                    <button type="button" id="btnrounded" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#information_modal">Update as of <?php echo date('m/d/Y'); ?></button>
-                    <br>
-                    <script src="//myradiostream.com/embed/ihnbible"></script>
+                    <br><br>
+                    <button type="button" class="btn btn-warning" id="opener">Update as of <?php echo date('m/d/Y'); ?></button>
+                    <br><br>
                 </div>
             </div>
         </div>
 
-        <div id="boxed" class="text-center">
+        <!-- <div id="boxed" class="text-center">
             <p><span style="font-size: 32px;">Get familiar with our online campus!</span></p>
                     
             <div class="row ml-12 mr-12 clearfix">
@@ -103,41 +103,36 @@ function main_form() {
                         How to enroll into a degree program
                     </button>
                 </div>
-                <!--div class="col-sm-2" align="center">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoOne">
-                        Coming Soon . . .
-                    </button>
-                </div-->
                 <div class="col-sm-2" align="center"></div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="boxed" class="text-center">
+        <!-- <div id="boxed" class="text-center">
             <p style="font-size: 28px;">Our current financial goal is <?php echo $g; ?>, which supports hundreds of students by providing satelite communications to receive education classes in remote areas. Can you pay it forward and help us reach our goal?</p>
             <p><span style="font-size: 32px;">We have received </span><span style="font-size: 40px; font-weight: bold;"><?php echo $c; ?></span> <span style="font-size: 32px;">of our</span> <span style="font-size: 40px; font-weight: bold;"><?php echo $g; ?></span> <span style="font-size: 32px;">goal!</span></p>
             
             <div class="progress" style="height: 40px;">
-            <?php
+            < ?php
             if($width >= 100){
                 ?>
                 <div class="progress-bar bg-success" role="progressbar" aria-label="20px high" style="width: <?php echo $width; ?>%"></div>
-                <?php
+                < ?php
             }else{
                 ?>
                 <div class="progress-bar bg-info" role="progressbar" aria-label="20px high" style="width: <?php echo $width; ?>%"></div>
-                <?php
+                < ?php
             }
             ?>
-                <!-- <div class="progress-bar bg-info" role="progressbar" aria-label="20px high" style="width: <?php echo $width; ?>%"></div> -->
                 <div style="font-size: 24px; font-weight: bold; padding-top: 4px;"><?php echo $width; ?>%</div>
             </div>
 
             <a href="#" class="btn btn-danger btn-lg" style="margin-top: 20px; margin-bottom: 20px;"><i class='bx bxs-heart'></i> I want to help - donate now</a>
 
             <p>A huge thank you to all our current supporters who make this opportunity possible by faithfully supporting this generosity-driven education.</p>
-        </div>
+        </div> -->
 
         <?php
+        /*
         if(empty($_SESSION['userid'])){
             ?>
             <div id="boxed" class="text-center">
@@ -159,10 +154,10 @@ function main_form() {
                             <img src="img/card_2.jpg" style="width: 100%;" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Become a Volunteer</h5>
-                                <p class="card-text">We need educators, administrators, writers, web developers, and so much more. Join our team!</p>
+                                <p class="card-text">We need educators, administrators, writers, web developers, and so much more.</p>
                             </div>
                             <div class="modal-footer card-btn">
-                                <a href="volunteer.php" class="btn btn-primary">Learn More</a>
+                                <a href="volunteer.php" class="btn btn-primary">Join our team!</a>
                             </div>
                         </div>
                     </div>
@@ -174,7 +169,7 @@ function main_form() {
                                 <p class="card-text">View our prayer list and pray over the issues and concerns. Join with others and witness God's power.</p>
                             </div>
                             <div class="modal-footer card-btn">
-                                <a href="prayerlist.php" class="btn btn-primary">Join Us</a>
+                                <a href="prayerlist.php" class="btn btn-primary">Let Us Pray</a>
                             </div>
                         </div>
                     </div>
@@ -323,7 +318,7 @@ function main_form() {
                 </div>
             <!-- </div> -->
             <?php
-        }
+        } */
         ?>
         
         <div id="boxed" style="margin-bottom: 50px;">&nbsp;</div>
@@ -428,6 +423,10 @@ function main_form() {
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="dialog" class="selector" title="Latest News">
+        <?php echo $news; ?>
     </div>
 
     <?php

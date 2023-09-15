@@ -27,7 +27,7 @@ function main_form() {
     global $courses_tablename, $courseid, $cprogid , $coursecode, $coursename, $coursedesc, $overview, $credits, $filename, $validcourse, $brief_desc, $course_photo, $course_cost, $course_discount, $hours, $videos, $cont_one, $cont_one_desc, $cont_two, $cont_two_desc, $cont_three, $cont_three_desc, $head_photo, $top_course;
 
     information_modal();
-    $menuid = 4;
+    $menuid = 5;
     testadmin();
     ?>
     <div class="height-100">
@@ -41,7 +41,7 @@ function main_form() {
             </div>
         </div>
 
-        <div id="boxed" class="text-center">
+        <!-- <div id="boxed" class="text-center">
             <p><span style="font-size: 32px;">What You Will Find Here</span></p>
                     
             <div class="row ml-12 mr-12 clearfix">
@@ -82,9 +82,9 @@ function main_form() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="boxed">
+        <!-- <div id="boxed">
             <div class="row ml-12 mr-12">
                 <div class="col" align="center">
                     <span style="font-size: 36px; font-weight: bold;"><strong>Already Registered As a Student?<br>Enroll Into a Program or Course Now!</strong></span>
@@ -102,7 +102,7 @@ function main_form() {
                     <div id="boxed" class="col-sm-8" align="center">
                         <p><span style="font-size: 32px;">List of Courses</span></p>
                         <div class="row row-cols-1 row-cols-md-4 g-4">
-                            <?php
+                            < ?php
                             // Attempt select query execution
                             if ($result = $mysqli->query("SELECT * FROM $courses_tablename")) {
                                 if(mysqli_num_rows($result) > 0){
@@ -119,27 +119,27 @@ function main_form() {
                                             <div class="col">
                                                 <div class="card course-cards">
                                                     <div class="card-body">
-                                                        <span class="card-title" style="font-size: 18px; font-weight: bold;"><?php echo $coursename; ?></span>
+                                                        <span class="card-title" style="font-size: 18px; font-weight: bold;">< ?php echo $coursename; ?></span>
                                                         <br>
-                                                        <span class="card-title" style="font-size: 14px; font-weight: bold;"><?php echo $coursecode." - ".$credits." Credits"; ?></span>
-                                                        <p class="card-text"><?php echo substr_replace($coursedesc, "...", 140); ?></p>
+                                                        <span class="card-title" style="font-size: 14px; font-weight: bold;">< ?php echo $coursecode." - ".$credits." Credits"; ?></span>
+                                                        <p class="card-text">< ?php echo substr_replace($coursedesc, "...", 140); ?></p>
                                                     </div>
                                                     <div class="card-footer d-grid gap-2">
-                                                        <?php
+                                                        < ?php
                                                         if(empty($_SESSION['userid'])){
                                                             ?>
                                                             <a href="#applicate" class="btn btn-primary btn-sm btn-block">Register or Login To Study</a>
-                                                            <?php
+                                                            < ?php
                                                         }else{
                                                             ?>
-                                                            <a href="enroll.php?id=<?php echo $courseid; ?>" class="btn btn-primary btn-sm">Enroll Into Course</a>
-                                                            <?php
+                                                            <a href="enroll.php?id=< ?php echo $courseid; ?>" class="btn btn-primary btn-sm">Enroll Into Course</a>
+                                                            < ?php
                                                         }
                                                         ?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php
+                                            < ?php
                                         }
                                     }
                                     // Free result set
@@ -159,9 +159,9 @@ function main_form() {
                     <div class="col-sm-2"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div id="boxed" style="margin-bottom: 50px;">
+        <!-- <div id="boxed" style="margin-bottom: 50px;">
             <h5 id="applicate"></h5>
             <div class="row ml-12 mr-12 clearfix">
                 <div class="col" align="center">
@@ -299,7 +299,7 @@ function main_form() {
                     <div class="col-sm-2"></div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     <div id="boxed" style="margin-bottom: 50px;"></div>
 

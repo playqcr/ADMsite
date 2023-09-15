@@ -2,16 +2,16 @@
 global $dbhost, $dbusername, $dbpassword, $dbname, $mysqli;
 
 // SERVER
-$dbhost = 'localhost';
-$dbusername = 'teemorco_ihnschl';
-$dbpassword = '1nh15nam3';
-$dbname = 'teemorco_ihnschool';
+// $dbhost = 'localhost';
+// $dbusername = 'teemorco_school2';
+// $dbpassword = 'TestSch00l2';
+// $dbname = 'teemorco_school2';
 
 // LOCALHOST
-// $dbhost = 'localhost';
-// $dbusername = 'ihnschl';
-// $dbpassword = '1nh15nam3';
-// $dbname = 'ihnbc';
+$dbhost = 'localhost';
+$dbusername = 'school2';
+$dbpassword = '1nh15nam3';
+$dbname = 'school2';
 
 $users_tablename = 'users';
 $answers_tablename = 'answers';

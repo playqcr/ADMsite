@@ -14,18 +14,29 @@ testadmin();
 
 ?>
 <div class="height-100">
-    <!-- <h4>Courses</h4> -->
     <br>
     <div id="boxed">
         <div class="row ml-12 mr-12 clearfix">
             <div class="col" align="center">
-                <font size="+3"><strong>Welcome to our courses, <?php echo $userfname; ?>!</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" id="btnrounded" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#information_modal">Update as of <?php echo date('m/d/Y'); ?></button>
+                <?php
+                if(empty($_SESSION['userid'])){
+                    ?>
+                    <font size="+3"><strong>Welcome to the Dashboard, Visitor!</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <?php
+                }else{
+                    ?>
+                    <font size="+3"><strong>Welcome to your Dashboard, <?php echo $userfname; ?>!</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <?php
+                }
+                ?>
+                <br><br>
+                <button type="button" class="btn btn-warning" id="opener">Update as of <?php echo date('m/d/Y'); ?></button>
+                <br><br>
             </div>
         </div>
     </div>
 
-    <div id="boxed" class="text-center">
+    <!-- <div id="boxed" class="text-center">
         <p><span style="font-size: 32px;">Get familiar with our online campus!</span></p>
                 
         <div class="row ml-12 mr-12 clearfix">
@@ -44,17 +55,11 @@ testadmin();
                     How to enroll into a degree program
                 </button>
             </div>
-            <!--div class="col-sm-2" align="center">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoOne">
-                    Coming Soon . . .
-                </button>
-            </div-->
             <div class="col-sm-2" align="center"></div>
         </div>
-    </div>
+    </div> -->
 
-    <div id="boxed" class="text-center">
-        <!-- <p style="font-size: 28px;">Our current financial goal is $< ?php echo $goal; ?>, which supports hundreds of students by providing satelite communications to receive education classes in remote areas. Can you pay it forward and help us reach our goal?</p> -->
+    <!-- <div id="boxed" class="text-center">
         <p><span style="font-size: 32px;">Check out our </span><span style="font-size: 40px; font-weight: bold;">Programs</span> <span style="font-size: 32px;">and</span> <span style="font-size: 40px; font-weight: bold;">Courses</span> <span style="font-size: 32px;">!</span></p>
 
         <div class="card-group center-cards">
@@ -67,7 +72,6 @@ testadmin();
                 </div>
             </a>
 
-            <!-- BACHELOR STUDIES -->
             <a href="#bbs" class="card-link">
                 <div class="card-boarder card_color_bachelor">
                     <span style="font-weight: bold;">Bachelor Degree of Biblical Studies</span>
@@ -117,59 +121,6 @@ testadmin();
                 </div>
             </a>
 
-            <!-- MASTER STUDIES -->
-            <!-- <div class="card-boarder card_color_master">
-                <span style="font-weight: bold;">Master Degree of Biblical Studies</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_master">
-                <span style="font-weight: bold;">Master Degree of Theology</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_master">
-                <span style="font-weight: bold;">Master Degree of Social Work</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_master">
-                <span style="font-weight: bold;">Master Degree of Christian Leadership</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div> -->
-
-            <!-- DOCTORATE STUDIES -->
-            <!-- <div class="card-boarder card_color_doctor">
-                <span style="font-weight: bold;">Doctorate Degree of Biblical Studies</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_doctor">
-                <span style="font-weight: bold;">Doctorate Degree of Theology</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_doctor">
-                <span style="font-weight: bold;">Doctorate Degree of Social Work</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div>
-            <div class="card-boarder card_color_doctor">
-                <span style="font-weight: bold;">Doctorate Degree of Christian Leadership</span>
-                <br><br>
-                <p class="card-text"><img src="img/undercon.gif" alt=""> Under Construction</p>
-                <p class="card-text"><small class="text-muted">10 Courses 40 Credits</small></p>
-            </div> -->
-            
-            <!-- CERTIFICATIONS -->
             <a href="#" class="card-link">
                 <div class="card-boarder card_color_cert">
                     <span style="font-weight: bold;">IHN College Teaching Certificate</span>
@@ -195,9 +146,9 @@ testadmin();
                 </div>
             </a>
         </div>
-    </div>
+    </div> -->
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-sm-12" id="bbs">
             <div class="card spacing">
                 <div class="card-body">
@@ -252,7 +203,6 @@ testadmin();
                             <strong>BIB208</strong><br>Life of Moses<br>
                         </div>
                     </div>
-                    <!-- <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a> -->
                 </div>
             </div>
         </div>
@@ -281,7 +231,6 @@ testadmin();
                             <strong>MIN211</strong><br>Walking in Present Truth<br>
                         </div>
                     </div>
-                    <!-- <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a> -->
                 </div>
             </div>
         </div>
@@ -310,7 +259,6 @@ testadmin();
                             <strong>MIN210</strong><br>Visions and Values<br>
                         </div>
                     </div>
-                    <!-- <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a> -->
                 </div>
             </div>
         </div>
@@ -339,7 +287,6 @@ testadmin();
                             <strong>MIN211</strong><br>Walking in Present Truth<br>
                         </div>
                     </div>
-                    <!-- <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a> -->
                 </div>
             </div>
         </div>
@@ -368,93 +315,10 @@ testadmin();
                             <strong>BIB211</strong><br>Prayer and Personal Bible Study<br>
                         </div>
                     </div>
-                    <!-- <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a> -->
                 </div>
             </div>
         </div>
-        
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Master Degree of Biblical Studies</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Master Degree of Theology</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Master Degree of Social Work</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Master Degree of Christian Leadership</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Doctorate Degree of Biblical Studies</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Doctorate Degree of Theology</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Doctorate Degree of Social Work</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-sm-12">
-            <div class="card spacing">
-                <div class="card-body">
-                    <span style="font-weight: bold; font-size: 18px;">Doctorate Degree of Christian Leadership</span>
-                    <p class="card-text">12 Courses 48 Credits</p>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: 20px;">Enroll Now</a>
-                </div>
-            </div>
-        </div> -->
-    </div>
+    </div> -->
         
     <!-- <div class="col-sm-12">
         <div class="card spacing">
@@ -585,6 +449,10 @@ testadmin();
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="dialog" class="selector" title="Latest News">
+        <?php echo $news; ?>
     </div>
 
     <div id="boxed" style="margin-bottom: 50px;">&nbsp;</div>
