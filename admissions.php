@@ -1,11 +1,11 @@
 <?php
 /****************************************************
-****   IHN Bible College
+****   Advanced Data Manager
 ****   Designed by: Tom Moore
 ****   Written by: Tom Moore
 ****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
 ****************************************************/
-    include "tmp/header.php";
+include "tmp/header.php";
 
 // Grab action
 if (isset($_POST['action'])) {

@@ -1,6 +1,6 @@
 <?php
 /****************************************************
-****   IHN Bible College
+****   Advanced Data Manager
 ****   Designed by: Tom Moore
 ****   Written by: Tom Moore
 ****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
@@ -338,7 +338,7 @@ function main_form() {
         <strong>10/21/2020</strong>
         <br /><br />
         <h3><strong>NEW SCHOOL CAMPUS</strong></h3>
-        We have just opened another campus in Africa located in the Zimbabwe refugee camp. They will begin classes next week, November 2020 and would like to welcome those students to the IHN Bible College family! You can see more by checking out our <a href='https://ihnbible.org/campus_africa.php'>Africa campus</a> pages.
+        We have just opened another campus in Africa located in the Zimbabwe refugee camp. They will begin classes next week, November 2020 and would like to welcome those students to the Advanced Data Manager family! You can see more by checking out our <a href='https://ihnbible.org/campus_africa.php'>Africa campus</a> pages.
         <br /><br />
         <strong>11/03/2020</strong>
         ";

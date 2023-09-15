@@ -1,6 +1,6 @@
 <?php
 /****************************************************
-****   IHN Bible College
+****   Advanced Data Manager
 ****   Designed by: Tom Moore
 ****   Written by: Tom Moore
 ****   (c) 2001 - 2021 TEEMOR eBusiness Solutions

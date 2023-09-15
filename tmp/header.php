@@ -1,6 +1,6 @@
 <?php
 /****************************************************
-****   IHN Bible College
+****   Advanced Data Manager
 ****   Designed by: Tom Moore
 ****   Written by: Tom Moore
 ****   (c) 2001 - 2021 TEEMOR eBusiness Solutions
@@ -62,7 +62,7 @@ global $menuid, $goal, $current, $pct, $userid;
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>IHN Bible College Online Campus</title>
+        <title>Advanced Data Manager Online Campus</title>
 		<meta name="author" content="TEEMOR eBiz Builder" />
 		<meta name="keywords" content="" />
 		<meta name="description" content="" />
