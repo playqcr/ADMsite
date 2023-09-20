@@ -137,7 +137,7 @@ global $menuid, $goal, $current, $pct, $userid;
                 });
 
                 $(".selector").dialog({
-                    width: 800
+                    width: 800;
                 });
 
                 $(".selector").dialog({

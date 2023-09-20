@@ -180,7 +180,9 @@ function main_form() {
 
         <br>
         <div class="card-group">
-
+            <!--********************************************************************************************
+            *******  SAVE NOTES
+            *********************************************************************************************-->
             <div class="card">
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                     <div class="card-body release-body-height">
@@ -195,6 +197,9 @@ function main_form() {
                 </form>
             </div>
 
+            <!--********************************************************************************************
+            *******  UPDATE NOTES
+            *********************************************************************************************-->
             <div class="card">
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                     <div class="card-body release-body-height">
@@ -203,7 +208,7 @@ function main_form() {
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2">
-                            <!-- <button name="action" type="submit" value="addnotes" class="btn btn-success btn-block">Add Notes</button> -->
+                            <button name="action" type="submit" value="updatenotes" class="btn btn-success btn-block">Update Notes</button>
                         </div>
                     </div>
                 </form>
@@ -228,11 +233,11 @@ function main_form() {
     <script>
         tinymce.init({
             selector: '#allnotes',
-            // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-            // toolbar: 'undo redo| bold italic underline strikethrough | bullist numlist indent outdent  | link image media table | align lineheight| emoticons charmap | removeformat | blocks fontfamily fontsize ',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo| bold italic underline strikethrough | bullist numlist indent outdent  | link image media table | align lineheight| emoticons charmap | removeformat | blocks fontfamily fontsize ',
             width: '100%',
             height: 420,
-            readonly: 1
+            readonly: 0
         });
     </script>
 
@@ -332,6 +337,115 @@ function save_notes(){
 }
 
 //*******************************************************
+//*******************  SAVE NOTES  **********************
+//*******************************************************
+function update_notes(){
+    global $PHP_SELF, $mysqli, $msg, $oldreleasenotes;
+    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $goalamt, $curgoal;
+
+    $newrelnotes = filter_var($_POST['allnotes'], FILTER_SANITIZE_STRING);
+    $newreleasenotes = addslashes($newrelnotes);
+    $oldreleasenotes = " ";
+
+    if (empty($newreleasenotes) || $newreleasenotes == null) {
+        $msg = "<div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Error updating Developer Note record: Empty release notes field.
+        </div>";
+        main_form();
+    }
+
+    // echo "newrelnotes: ".$newrelnotes."<br>";
+    // echo "newdelenotes: ".$newreleasenotes."<br>";
+    // exit;
+
+    date_default_timezone_set('America/Phoenix');
+    $newdate = date("m/d/Y");
+
+    // Attempt select query execution
+    $sql = "SELECT * FROM $system_tablename";
+    if ($result = mysqli_query($mysqli, $sql)) {
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
+            $sysadminver = $row['sysadminver'];
+            $verdate = $row['verdate'];
+            $releasenotes = $row['releasenotes'];
+            // Free result set
+            mysqli_free_result($result);
+        } else {
+            $_SESSION['msg'] = "<font color='#FF0000'><strong>Account Does Not Exsist!</strong></font>";
+            main_form();
+            exit;
+        }
+    } else {
+        echo "ERROR: Was not able to execute Query on line #228. " . mysqli_error($mysqli);
+    }
+    // End attempt select query execution
+
+    if (empty($newreleasenotes) || $newreleasenotes == null) {
+        $msg = "<div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Error updating User record: Empty release notes field.
+        </div>";
+        main_form();
+    }
+
+    $relnotes = $newreleasenotes . "<br><br><strong>" . $newdate . "</strong><hr>" . $releasenotes;
+
+    // Attempt select query execution
+    $sqla = "UPDATE $system_tablename SET releasenotes = '$oldreleasenotes'";
+    if ($mysqli->query($sqla) === TRUE) {
+        $msg = "<div class='alert alert-success' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>SUCCESS!</strong> Notes deleted successfully!
+        </div>";
+        //exit;
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Error deleting notes: " . $mysqli->error . "
+        </div>";
+    }
+    // End attempt select query execution
+
+
+    // Attempt select query execution
+    $sqlb = "UPDATE $system_tablename SET releasenotes = '$relnotes'";
+    if ($mysqli->query($sqlb) === TRUE) {
+        $msg = "<div class='alert alert-success' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>SUCCESS!</strong> Notes updated successfully!
+        </div>";
+        //exit;
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Error updating notes: " . $mysqli->error . "
+        </div>";
+    }
+    // End attempt select query execution
+
+
+    // Attempt select query execution
+    $sql = "UPDATE $system_tablename SET  sysadminver = '$sysadminver', verdate = '$newdate'";
+    if ($mysqli->query($sql) === TRUE) {
+        //header("Location:admin.php");
+        $msg = "<div class='alert alert-success' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>SUCCESS!</strong> Release notes updated!
+        </div>";
+    } else {
+        $msg = "<div class='alert alert-danger' role='alert'>
+        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+        <strong>ERROR!</strong> Error updating release notes: " . $mysqli->error . "
+        </div>";
+    }
+    // End attempt select query execution
+
+    main_form();
+}
+
+//*******************************************************
 //**********************  SWITCH  ***********************
 //*******************************************************
 switch($action) {
@@ -340,6 +454,9 @@ switch($action) {
     break;
     case "Save Goals":
         save_goals();
+    break;
+    case "updatenotes":
+        update_notes();
     break;
     case "addnotes":
         save_notes();

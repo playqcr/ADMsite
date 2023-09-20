@@ -24,9 +24,11 @@ function main_form() {
     information_modal();
 
     // Attempt select query execution
+    // if ($result = $mysqli->query("SELECT releasenotes, goalamt, curgoal FROM $system_tablename")) {
     if ($result = $mysqli->query("SELECT goalamt, curgoal FROM $system_tablename")) {
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_array($result);
+            // $releasenotes = $row['releasenotes'];
             $goalamt = $row['goalamt'];
             $curgoal = $row['curgoal'];
             // Free result set
@@ -326,22 +328,23 @@ function main_form() {
 
 
     <?php
-        $news = "<h3><strong>IMPORTANT!</strong></h3>
-        We have been having problems with students not being able to change their password. This has just been fixed finally. We deeply apologize for the inconvenience.
-        <br /><br />
-        If you cannot login to the school page because you forgot your password, go to the login page. Just under the login area you will find a link entitled &quot;I Forgot My Password&quot;. Click this link and follow the directions. It may take several minutes to receive an email. When you do click the link in the email or copy it to your browser and you will get to a screen where you can change your password.
-        <br /><br />
-        We are very sorry for the inconvenience.
-        <br /><br />
-        Blessings to you and yours!
-        <br /><br />
-        <strong>10/21/2020</strong>
-        <br /><br />
-        <h3><strong>NEW SCHOOL CAMPUS</strong></h3>
-        We have just opened another campus in Africa located in the Zimbabwe refugee camp. They will begin classes next week, November 2020 and would like to welcome those students to the Advanced Data Manager family! You can see more by checking out our <a href='https://ihnbible.org/campus_africa.php'>Africa campus</a> pages.
-        <br /><br />
-        <strong>11/03/2020</strong>
-        ";
+    $news = $releasenotes;
+        // $news = "<h3><strong>IMPORTANT!</strong></h3>
+        // We have been having problems with students not being able to change their password. This has just been fixed finally. We deeply apologize for the inconvenience.
+        // <br /><br />
+        // If you cannot login to the school page because you forgot your password, go to the login page. Just under the login area you will find a link entitled &quot;I Forgot My Password&quot;. Click this link and follow the directions. It may take several minutes to receive an email. When you do click the link in the email or copy it to your browser and you will get to a screen where you can change your password.
+        // <br /><br />
+        // We are very sorry for the inconvenience.
+        // <br /><br />
+        // Blessings to you and yours!
+        // <br /><br />
+        // <strong>10/21/2020</strong>
+        // <br /><br />
+        // <h3><strong>NEW SCHOOL CAMPUS</strong></h3>
+        // We have just opened another campus in Africa located in the Zimbabwe refugee camp. They will begin classes next week, November 2020 and would like to welcome those students to the Advanced Data Manager family! You can see more by checking out our <a href='https://ihnbible.org/campus_africa.php'>Africa campus</a> pages.
+        // <br /><br />
+        // <strong>11/03/2020</strong>
+        // ";
     ?>
 
 
