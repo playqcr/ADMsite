@@ -344,6 +344,8 @@ function save_current_notes(){
     global $PHP_SELF, $mysqli, $msg, $oldreleasenotes;
     global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
 
+    date_default_timezone_set('America/Phoenix');
+
     $newcurnotes = filter_var($_POST['currentnotes'], FILTER_SANITIZE_STRING);
     $newcurrentnotes = addslashes($newcurnotes);
 

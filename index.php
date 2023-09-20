@@ -79,9 +79,13 @@ function main_form() {
                         <font size="+3"><strong>Welcome to your Dashboard, <?php echo $userfname; ?>!</strong></font>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php
                     }
+                    
+                    date_default_timezone_set('America/Phoenix');
                     ?>
                     <br><br>
-                    <button type="button" class="btn btn-warning" id="opener">Current News as of <?php echo date('m/d/Y'); ?></button>
+                    <button type="button" class="btn btn-warning" id="opener">Current News</button>
+                    <br><br>
+                    <button type="button" id="btnrounded" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#information_modal">Release Notes as of <?php echo date('m/d/Y'); ?></button>
                     <br><br>
                 </div>
             </div>
