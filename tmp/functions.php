@@ -4,7 +4,7 @@
  *************************************************************************/
 function information_modal(){
     global $PHP_SELF, $mysqli, $hdmysqli, $bkcolor, $perpage, $page, $msg;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes;
 
     // Attempt select query execution
     $sql = "SELECT * FROM $system_tablename";

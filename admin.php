@@ -20,25 +20,18 @@ if (isset($_POST['action'])) {
 function main_form() {
 	global $PHP_SELF, $mysqli, $msg, $notice, $notice_header, $notice_body;
     global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes;
     global $menuid, $goal, $current, $pct;
-    global $progenroll_tablename, $progenrollid, $enrprogid , $enruserid, $enrolldate;
-    global $programs_tablename, $progid, $progname , $enabled, $cost, $charge, $accordian_header, $progtype;
-    global $selected_progid, $selected_progname , $selected_enabled, $selected_cost, $selected_charge, $selected_accordian_header, $selected_progtype;
-    global $volunteers_tablename, $vid, $vfname , $vmname, $vlname, $vemail, $vphone, $vaddress, $vcity, $vstate, $vzip;
-    global $volunteerpos_tablename, $vposid, $vtitle, $vdescription, $vneeded;
 
     // *******************************************************************************************
     // ********   FINANCIAL GOAL CALCULATIONS
     // *******************************************************************************************
     // Attempt select query execution
-    if ($result = $mysqli->query("SELECT releasenotes, cuurentnotes, goalamt, curgoal FROM $system_tablename")) {
+    if ($result = $mysqli->query("SELECT releasenotes, cuurentnotes FROM $system_tablename")) {
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_array($result);
             $releasenotes = $row['releasenotes'];
             $cuurentnotes = $row['cuurentnotes'];
-            $goalamt = $row['goalamt'];
-            $curgoal = $row['curgoal'];
             // Free result set
             mysqli_free_result($result);
         } else{
@@ -53,60 +46,6 @@ function main_form() {
 
     $menuid = 0;
     testadmin();
-
-    $g = $goalamt;
-    $c = $curgoal;
-
-    $gresult = str_replace('$', '', $g);
-    $goal = str_replace(',', '', $gresult);
-    
-    $cresult = str_replace('$', '', $c);
-    $current = str_replace(',', '', $cresult);
-
-    $pct = ($current / $goal) * 100;
-
-    // *******************************************************************************************
-    // ********   VOLUNTEER CALCULATIONS
-    // *******************************************************************************************
-    // Attempt select query execution
-    $totalpos = 0;
-    if ($resultx = $mysqli->query("SELECT vneeded FROM $volunteerpos_tablename")) {
-        if(mysqli_num_rows($resultx) > 0){
-            while($rowx = mysqli_fetch_array($resultx)){
-                $vneeded = $rowx['vneeded'];
-                $totalpos += $vneeded;
-            }
-            // Free result set
-            mysqli_free_result($resultx);
-        } else{
-            $msg = "<font color='#FF0000'><strong>Account not found!</strong></font>";
-            main_form();
-            exit;
-        }
-    } else{
-        echo "ERROR: Was not able to execute Query on line #55. " . mysqli_error($mysqli);
-    }
-    // End attempt select query execution
-
-    // Attempt select query execution
-    if ($result = $mysqli->query("SELECT COUNT(*) AS 'totalv' FROM $volunteers_tablename")) {
-        if(mysqli_num_rows($result) > 0){
-            $row = mysqli_fetch_array($result);
-            $totalv = $row[0];
-            // Free result set
-            mysqli_free_result($result);
-        } else{
-            $msg = "<font color='#FF0000'><strong>Account not found!</strong></font>";
-            main_form();
-            exit;
-        }
-    } else{
-        echo "ERROR: Was not able to execute Query on line #152. " . mysqli_error($mysqli);
-    }
-    // End attempt select query execution
-
-    // $vpercent = ($vneeded / $totalv) * 100;
-    $vpercent = ($totalv / $totalpos) * 100;
 
     // *******************************************************************************************
     // ********   END VOLUNTEER CALCULATIONS
@@ -251,7 +190,7 @@ function main_form() {
 //*******************************************************
 function save_notes(){
     global $PHP_SELF, $mysqli, $msg;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes;
 
     $newrelnotes = filter_var($_POST['relnotes'], FILTER_SANITIZE_STRING);
     $newreleasenotes = addslashes($newrelnotes);
@@ -342,7 +281,7 @@ function save_notes(){
 //*******************************************************
 function save_current_notes(){
     global $PHP_SELF, $mysqli, $msg, $oldreleasenotes;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes;
 
     date_default_timezone_set('America/Phoenix');
 
@@ -385,12 +324,6 @@ function save_current_notes(){
 //**********************  SWITCH  ***********************
 //*******************************************************
 switch($action) {
-    case "Select Program":
-        select_program();
-    break;
-    case "Save Goals":
-        save_goals();
-    break;
     case "updatenotes":
         save_current_notes();
     break;

@@ -14,18 +14,7 @@ $dbpassword = 'Adm51t3Kewl';
 $dbname = 'admsite';
 
 $users_tablename = 'users';
-$answers_tablename = 'answers';
-$courses_tablename = 'courses';
-$enrollments_tablename = 'enrollments';
-$exams_tablename = 'exams';
-$programs_tablename = 'programs';
-$progenroll_tablename = 'progenroll';
-$prog_det_tablename = 'prog_det';
-$progenroll_tablename = 'progenroll';
-$registration_tablename = 'registration';
 $ticker_tablename = 'ticker';
-$volunteers_tablename = 'volunteers';
-$volunteerpos_tablename = 'volunteerpos';
 $system_tablename = 'system';
 
 //*****************************************************************************
