@@ -281,11 +281,6 @@ a:hover {
     left: 0;
 }
 
-/* .note-box {
-    max-height: 100%;
-    overflow-y: scroll;
-} */
-
 .body-pd {
     padding-left: calc(var(--nav-width) + 1rem);
 }

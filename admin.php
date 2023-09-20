@@ -20,7 +20,7 @@ if (isset($_POST['action'])) {
 function main_form() {
 	global $PHP_SELF, $mysqli, $msg, $notice, $notice_header, $notice_body;
     global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
     global $menuid, $goal, $current, $pct;
     global $progenroll_tablename, $progenrollid, $enrprogid , $enruserid, $enrolldate;
     global $programs_tablename, $progid, $progname , $enabled, $cost, $charge, $accordian_header, $progtype;
@@ -32,10 +32,11 @@ function main_form() {
     // ********   FINANCIAL GOAL CALCULATIONS
     // *******************************************************************************************
     // Attempt select query execution
-    if ($result = $mysqli->query("SELECT releasenotes, goalamt, curgoal FROM $system_tablename")) {
+    if ($result = $mysqli->query("SELECT releasenotes, cuurentnotes, goalamt, curgoal FROM $system_tablename")) {
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_array($result);
             $releasenotes = $row['releasenotes'];
+            $cuurentnotes = $row['cuurentnotes'];
             $goalamt = $row['goalamt'];
             $curgoal = $row['curgoal'];
             // Free result set
@@ -181,13 +182,13 @@ function main_form() {
         <br>
         <div class="card-group">
             <!--********************************************************************************************
-            *******  SAVE NOTES
+            *******  RELEASE NOTES
             *********************************************************************************************-->
             <div class="card">
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                     <div class="card-body release-body-height">
                         <h4 class="card-title">Add Notes</h4>
-                        <textarea name="relnotes" id="relnotes" style="width: 100%; height: 400px;"></textarea>
+                        <textarea name="relnotes" id="relnotes" style="width: 100%; height: 400px;" placeholder="<?php echo $releasenotes; ?>"></textarea>
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2">
@@ -198,13 +199,13 @@ function main_form() {
             </div>
 
             <!--********************************************************************************************
-            *******  UPDATE NOTES
+            *******  CURRENT NOTES
             *********************************************************************************************-->
             <div class="card">
                 <form action="<?php echo $PHP_SELF ?>" method="post">
                     <div class="card-body release-body-height">
                         <h4 class="card-title">View Notes</h4>
-                        <textarea name="allnotes" id="allnotes" style="width: 100%; height: 400px;"><?php echo $releasenotes; ?></textarea>
+                        <textarea name="currentnotes" id="curnotes" style="width: 100%; height: 400px;" placeholder="<?php echo $cuurentnotes; ?>"></textarea>
                     </div>
                     <div class="card-footer">
                         <div class="d-grid gap-2">
@@ -232,7 +233,7 @@ function main_form() {
 
     <script>
         tinymce.init({
-            selector: '#allnotes',
+            selector: '#curnotes',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo| bold italic underline strikethrough | bullist numlist indent outdent  | link image media table | align lineheight| emoticons charmap | removeformat | blocks fontfamily fontsize ',
             width: '100%',
@@ -250,7 +251,7 @@ function main_form() {
 //*******************************************************
 function save_notes(){
     global $PHP_SELF, $mysqli, $msg;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
 
     $newrelnotes = filter_var($_POST['relnotes'], FILTER_SANITIZE_STRING);
     $newreleasenotes = addslashes($newrelnotes);
@@ -339,78 +340,28 @@ function save_notes(){
 //*******************************************************
 //*******************  SAVE NOTES  **********************
 //*******************************************************
-function update_notes(){
+function save_current_notes(){
     global $PHP_SELF, $mysqli, $msg, $oldreleasenotes;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
 
-    $newrelnotes = filter_var($_POST['allnotes'], FILTER_SANITIZE_STRING);
-    $newreleasenotes = addslashes($newrelnotes);
-    $oldreleasenotes = " ";
+    $newcurnotes = filter_var($_POST['currentnotes'], FILTER_SANITIZE_STRING);
+    $newcurrentnotes = addslashes($newcurnotes);
 
-    if (empty($newreleasenotes) || $newreleasenotes == null) {
+    if (empty($newcurrentnotes) || $newcurrentnotes == null) {
         $msg = "<div class='alert alert-danger' role='alert'>
         <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>ERROR!</strong> Error updating Developer Note record: Empty release notes field.
+        <strong>ERROR!</strong> Error updating current Note record: Empty current notes field.
         </div>";
         main_form();
     }
-
-    // echo "newrelnotes: ".$newrelnotes."<br>";
-    // echo "newdelenotes: ".$newreleasenotes."<br>";
-    // exit;
 
     date_default_timezone_set('America/Phoenix');
     $newdate = date("m/d/Y");
 
-    // Attempt select query execution
-    $sql = "SELECT * FROM $system_tablename";
-    if ($result = mysqli_query($mysqli, $sql)) {
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result);
-            $sysadminver = $row['sysadminver'];
-            $verdate = $row['verdate'];
-            $releasenotes = $row['releasenotes'];
-            // Free result set
-            mysqli_free_result($result);
-        } else {
-            $_SESSION['msg'] = "<font color='#FF0000'><strong>Account Does Not Exsist!</strong></font>";
-            main_form();
-            exit;
-        }
-    } else {
-        echo "ERROR: Was not able to execute Query on line #228. " . mysqli_error($mysqli);
-    }
-    // End attempt select query execution
-
-    if (empty($newreleasenotes) || $newreleasenotes == null) {
-        $msg = "<div class='alert alert-danger' role='alert'>
-        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>ERROR!</strong> Error updating User record: Empty release notes field.
-        </div>";
-        main_form();
-    }
-
-    $relnotes = $newreleasenotes . "<br><br><strong>" . $newdate . "</strong><hr>" . $releasenotes;
+    $curnotes = $newcurrentnotes . "<br><br><strong>" . $newdate . "</strong>";
 
     // Attempt select query execution
-    $sqla = "UPDATE $system_tablename SET releasenotes = '$oldreleasenotes'";
-    if ($mysqli->query($sqla) === TRUE) {
-        $msg = "<div class='alert alert-success' role='alert'>
-        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>SUCCESS!</strong> Notes deleted successfully!
-        </div>";
-        //exit;
-    } else {
-        $msg = "<div class='alert alert-danger' role='alert'>
-        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>ERROR!</strong> Error deleting notes: " . $mysqli->error . "
-        </div>";
-    }
-    // End attempt select query execution
-
-
-    // Attempt select query execution
-    $sqlb = "UPDATE $system_tablename SET releasenotes = '$relnotes'";
+    $sqlb = "UPDATE $system_tablename SET cuurentnotes = '$curnotes'";
     if ($mysqli->query($sqlb) === TRUE) {
         $msg = "<div class='alert alert-success' role='alert'>
         <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
@@ -421,23 +372,6 @@ function update_notes(){
         $msg = "<div class='alert alert-danger' role='alert'>
         <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
         <strong>ERROR!</strong> Error updating notes: " . $mysqli->error . "
-        </div>";
-    }
-    // End attempt select query execution
-
-
-    // Attempt select query execution
-    $sql = "UPDATE $system_tablename SET  sysadminver = '$sysadminver', verdate = '$newdate'";
-    if ($mysqli->query($sql) === TRUE) {
-        //header("Location:admin.php");
-        $msg = "<div class='alert alert-success' role='alert'>
-        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>SUCCESS!</strong> Release notes updated!
-        </div>";
-    } else {
-        $msg = "<div class='alert alert-danger' role='alert'>
-        <button type='button' class='close' data-bs-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-        <strong>ERROR!</strong> Error updating release notes: " . $mysqli->error . "
         </div>";
     }
     // End attempt select query execution
@@ -456,7 +390,7 @@ switch($action) {
         save_goals();
     break;
     case "updatenotes":
-        update_notes();
+        save_current_notes();
     break;
     case "addnotes":
         save_notes();

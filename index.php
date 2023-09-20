@@ -18,17 +18,18 @@ if (isset($_POST['action'])) {
 //*******************************************************
 function main_form() {
 	global $PHP_SELF, $mysqli, $msg, $notice, $notice_header, $notice_body, $fullname;
-    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $goalamt, $curgoal;
+    global $system_tablename, $sysid, $president , $vice, $treasurer, $secretary, $directorafrica, $deanedu, $corecourses, $followers, $facebook, $twitter, $youtube, $linkedin, $info, $updatedate, $cookietime, $sysadminver, $verdate, $releasenotes, $cuurentnotes, $goalamt, $curgoal;
     global $users_tablename, $userid, $useremail , $userpassword, $isadmin, $userfname, $usermname, $userlname, $useraddress, $usercity, $userstate, $userzip, $usercountry, $userphone, $suspended, $highgrade, $dob, $usersaved, $baptized, $baptismdate, $profile, $imagepath, $corecompletedate, $branchid, $role, $messages, $core_complete, $resetpwd;
     global $menuid, $goal, $current, $pct, $userid;
     information_modal();
 
     // Attempt select query execution
-    // if ($result = $mysqli->query("SELECT releasenotes, goalamt, curgoal FROM $system_tablename")) {
-    if ($result = $mysqli->query("SELECT goalamt, curgoal FROM $system_tablename")) {
+    if ($result = $mysqli->query("SELECT releasenotes, cuurentnotes, goalamt, curgoal FROM $system_tablename")) {
+    // if ($result = $mysqli->query("SELECT goalamt, curgoal FROM $system_tablename")) {
         if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_array($result);
-            // $releasenotes = $row['releasenotes'];
+            $releasenotes = $row['releasenotes'];
+            $cuurentnotes = $row['cuurentnotes'];
             $goalamt = $row['goalamt'];
             $curgoal = $row['curgoal'];
             // Free result set
@@ -80,7 +81,7 @@ function main_form() {
                     }
                     ?>
                     <br><br>
-                    <button type="button" class="btn btn-warning" id="opener">Update as of <?php echo date('m/d/Y'); ?></button>
+                    <button type="button" class="btn btn-warning" id="opener">Current News as of <?php echo date('m/d/Y'); ?></button>
                     <br><br>
                 </div>
             </div>
@@ -328,7 +329,7 @@ function main_form() {
 
 
     <?php
-    $news = $releasenotes;
+    $news = $cuurentnotes;
         // $news = "<h3><strong>IMPORTANT!</strong></h3>
         // We have been having problems with students not being able to change their password. This has just been fixed finally. We deeply apologize for the inconvenience.
         // <br /><br />
